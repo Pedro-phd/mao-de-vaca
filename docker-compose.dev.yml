@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  db:
+    image: "postgres:latest"
+    container_name: mdv-db
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    container_name: mdv-pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - '9999:80'
+    depends_on:
+      - db
