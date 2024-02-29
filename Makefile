@@ -29,4 +29,7 @@ app:
 db-dev:
 	sudo docker compose -f $(COMPOSE_DEV_FILE) up
 db-dev-stop:
-	sudo docker compose -f $(COMPOSE_DEV_FILE) stop
+	sudo docker compose -f $(COMPOSE_DEV_FILE) down
+db-dev-clean:
+	docker-compose -f $(COMPOSE_DEV_FILE) down --volumes --remove-orphans
+
