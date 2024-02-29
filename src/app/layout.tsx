@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { GeistSans } from 'geist/font/sans';
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { SessionProvider } from "next-auth/react";
 import GlobalMenu from "@/components/GlobalMenu";
-
-const inter = Inter({ subsets: ["latin"] });
+import { ThemeModeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,19 +18,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        {/* <ThemeProvider
+      <body 
+        className={GeistSans.className}
+      >
+        <ThemeModeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
-        > */}
+        >
         <SessionProvider>
           <GlobalMenu />
           {children} 
           <Toaster />
         </SessionProvider>
-        {/* </ThemeProvider> */}
+        </ThemeModeProvider>
       </body>
     </html>
   );
